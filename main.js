@@ -46,7 +46,21 @@ function playRound(humanChoice, computerChoice) {
     }
 }
 
-const humanSelection = getHumanChoice();
-const computerSelection = getComputerChoice();
+function playGame() {
+    for (let i = 0; i < 5; i++) {
+        const humanSelection = getHumanChoice();
+        const computerSelection = getComputerChoice();
 
-playRound(humanSelection, computerSelection);
+        playRound(humanSelection, computerSelection);
+    }
+
+    if (humanScore > computerScore) {
+        alert('You won the game! :D');
+    } else if (computerScore > humanScore) {
+        alert('You lost! GGWP');
+    } else {
+        alert('Its a draw!');
+    }
+}
+
+playGame();
