@@ -21,27 +21,34 @@ function getComputerChoice() {
     return getChoice(choice);
 }
 
-function getHumanChoice() {
-    const choice = prompt('Rock, paper or scissors?');
-
-    return choice;
-}
+const resultsDiv = document.querySelector('#results');
 
 function playRound(humanChoice, computerChoice) {
+    let results = '';
     humanChoice = humanChoice.toLowerCase();
 
-    console.log(`You chose ${humanChoice}`);
-    console.log(`Computer chose ${computerChoice}`);
+    results += `You chose ${humanChoice}, `;
+    results += `Computer chose ${computerChoice}, `;
 
     if ((humanChoice === 'rock' && computerChoice === 'scissors') 
         || (humanChoice === 'scissors' && computerChoice === 'paper') 
         || (humanChoice === 'paper' && computerChoice === 'rock')) {
-            console.log(`You win! ${humanChoice} wins ${computerChoice}`);
+            results += `You win! ${humanChoice} wins ${computerChoice}.`;
             humanScore += 1;
     } else if (humanChoice === computerChoice) {
-        console.log('Its a draw!');
+        results += 'Its a draw!';
     } else {
-        console.log(`You lose! ${computerChoice} wins ${humanChoice}`);
+        results += `You lose! ${computerChoice} wins ${humanChoice}.`;
         computerScore += 1;
     }
+    resultsDiv.textContent = results;
 }
+
+const buttons = document.querySelector('#buttons');
+
+buttons?.addEventListener('click', (e) => {
+    let target = e.target;
+
+    playRound(target.id, getComputerChoice());
+
+});
